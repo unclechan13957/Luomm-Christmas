@@ -1,687 +1,766 @@
-<html lang="en" >
-<head>
-<meta charset="UTF-8">
-<title>2022圣诞快乐！</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-:root {
-	--main-bg: #c2c2c2;
-	--trunk-bg-1: #5e2100;
-	--trunk-bg-2: #783e00;
-	--leaves-bottom-bg-1: #0f980f;
-	--leaves-bottom-bg-2: #3fc83f;
-	--leaves-middle-bg-1: #1fa81f;
-	--leaves-middle-bg-2: #4fd84f;
-	--leaves-top-bg-1: #2fb82f;
-	--leaves-top-bg-2: #5fe85f;
-	--star-bg: #ffdd00;
-	--shine-bg: #ffeb69;
-	--snow-bg: #f2f2f2;
-	--tree-width: 200px;
-	--tree-height: 400px;
-	--tree-rotate: -15deg;
-	--trunk-width: 30px;
-	--trunk-height: 400px;
-	--trunk-angle: 4.3deg;
-	--leaves-translate: 15px;
-	--leaves-bottom-width: 100px;
-	--leaves-bottom-height: 320px;
-	--leaves-bottom-angle: 18.2deg;
-	--leaves-middle-width: 80px;
-	--leaves-middle-height: 220px;
-	--leaves-middle-angle: 21.4deg;
-	--leaves-top-width: 60px;
-	--leaves-top-height: 140px;
-	--leaves-top-angle: 25.5deg;
-	--star-size: 20px;
-}
-
-html, body {
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-}
-
-.ts-3d {
-	transform-style: preserve-3d;
-}
-
-.container {
-	background-color: var(--main-bg);
-	width: 100%;
-	min-height: 100%;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.tree {
-	width: var(--tree-width);
-	height: var(--tree-height);
-	position: relative;
-	transform-style: preserve-3d;
-	transform: rotateX(var(--tree-rotate));
-}
-
-.trunk,
-.leaves-bottom,
-.leaves-middle,
-.leaves-top {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	animation: 10s tree-rotate linear infinite;
-}
-
-.trunk div {
-	border-top: none;
-	border-left: solid var(--trunk-width) transparent;
-	border-right: solid var(--trunk-width) transparent;
-	position: absolute;
-	bottom: 0;
-	left: calc(50% - var(--trunk-width));
-	transform-origin: bottom;
-}
-
-.trunk div:nth-child(1) {
-	border-bottom: solid var(--trunk-height) var(--trunk-bg-1);
-	transform: rotateX(var(--trunk-angle)) translateY(2px) translateZ(var(--trunk-width));
-}
-
-.trunk div:nth-child(2) {
-	border-bottom: solid var(--trunk-height) var(--trunk-bg-2);
-	transform: rotateY(90deg) rotateX(calc(var(--trunk-angle) * -1)) translateY(2px) translateZ(calc(var(--trunk-width) * -1));
-}
-
-.trunk div:nth-child(3) {
-	border-bottom: solid var(--trunk-height) var(--trunk-bg-1);
-	transform: rotateX(calc(var(--trunk-angle) * -1)) translateY(2px) translateZ(calc(var(--trunk-width) * -1));
-}
-
-.trunk div:nth-child(4) {
-	border-bottom: solid var(--trunk-height) var(--trunk-bg-2);
-	transform: rotateY(-90deg) rotateX(calc(var(--trunk-angle) * -1)) translateY(2px) translateZ(calc(var(--trunk-width) * -1));
-}
-
-.leaves-bottom div {
-	border-top: none;
-	border-left: solid var(--leaves-bottom-width) transparent;
-	border-right: solid var(--leaves-bottom-width) transparent;
-	position: absolute;
-	top: var(--star-size);
-	left: calc(50% - var(--leaves-bottom-width));
-	transform-origin: bottom;
-}
-
-.leaves-bottom div:nth-child(1) {
-	border-bottom: solid var(--leaves-bottom-height) var(--leaves-bottom-bg-1);
-	transform: rotateX(var(--leaves-bottom-angle)) translateY(var(--leaves-translate)) translateZ(var(--leaves-bottom-width));
-}
-
-.leaves-bottom div:nth-child(2) {
-	border-bottom: solid var(--leaves-bottom-height) var(--leaves-bottom-bg-2);
-	transform: rotateY(90deg) rotateX(calc(var(--leaves-bottom-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-bottom-width) * -1));
-}
-
-.leaves-bottom div:nth-child(3) {
-	border-bottom: solid var(--leaves-bottom-height) var(--leaves-bottom-bg-1);
-	transform: rotateX(calc(var(--leaves-bottom-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-bottom-width) * -1));
-}
-
-.leaves-bottom div:nth-child(4) {
-	border-bottom: solid var(--leaves-bottom-height) var(--leaves-bottom-bg-2);
-	transform: rotateY(-90deg) rotateX(calc(var(--leaves-bottom-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-bottom-width) * -1));
-}
-
-.leaves-middle div {
-	border-top: none;
-	border-left: solid var(--leaves-middle-width) transparent;
-	border-right: solid var(--leaves-middle-width) transparent;
-	position: absolute;
-	top: var(--star-size);
-	left: calc(50% - var(--leaves-middle-width));
-	transform-origin: bottom;
-}
-
-.leaves-middle div:nth-child(1) {
-	border-bottom: solid var(--leaves-middle-height) var(--leaves-middle-bg-1);
-	transform: rotateX(var(--leaves-middle-angle)) translateY(var(--leaves-translate)) translateZ(var(--leaves-middle-width));
-}
-
-.leaves-middle div:nth-child(2) {
-	border-bottom: solid var(--leaves-middle-height) var(--leaves-middle-bg-2);
-	transform: rotateY(90deg) rotateX(calc(var(--leaves-middle-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-middle-width) * -1));
-}
-
-.leaves-middle div:nth-child(3) {
-	border-bottom: solid var(--leaves-middle-height) var(--leaves-middle-bg-1);
-	transform: rotateX(calc(var(--leaves-middle-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-middle-width) * -1));
-}
-
-.leaves-middle div:nth-child(4) {
-	border-bottom: solid var(--leaves-middle-height) var(--leaves-middle-bg-2);
-	transform: rotateY(-90deg) rotateX(calc(var(--leaves-middle-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-middle-width) * -1));
-}
-
-.leaves-top div {
-	border-top: none;
-	border-left: solid var(--leaves-top-width) transparent;
-	border-right: solid var(--leaves-top-width) transparent;
-	position: absolute;
-	top: var(--star-size);
-	left: calc(50% - var(--leaves-top-width));
-	transform-origin: bottom;
-}
-
-.leaves-top div:nth-child(1) {
-	border-bottom: solid var(--leaves-top-height) var(--leaves-top-bg-1);
-	transform: rotateX(var(--leaves-top-angle)) translateY(var(--leaves-translate)) translateZ(var(--leaves-top-width));
-}
-
-.leaves-top div:nth-child(2) {
-	border-bottom: solid var(--leaves-top-height) var(--leaves-top-bg-2);
-	transform: rotateY(90deg) rotateX(calc(var(--leaves-top-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-top-width) * -1));
-}
-
-.leaves-top div:nth-child(3) {
-	border-bottom: solid var(--leaves-top-height) var(--leaves-top-bg-1);
-	transform: rotateX(calc(var(--leaves-top-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-top-width) * -1));
-}
-
-.leaves-top div:nth-child(4) {
-	border-bottom: solid var(--leaves-top-height) var(--leaves-top-bg-2);
-	transform: rotateY(-90deg) rotateX(calc(var(--leaves-top-angle) * -1)) translateY(var(--leaves-translate)) translateZ(calc(var(--leaves-top-width) * -1));
-}
-
-@keyframes tree-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg); }
-}
-
-.shadow {
-	background-color: rgba(0, 0, 0, 0.8);
-	width: calc(var(--leaves-bottom-width) * 2);
-	height: calc(var(--leaves-bottom-width) * 2);
-	filter: blur(calc(var(--leaves-bottom-width) / 2));
-	position: absolute;
-	bottom: calc(var(--leaves-bottom-width) * -1);
-	left: calc(50% - var(--leaves-bottom-width));
-	transform: rotateX(90deg) translateX(-50%);
-	animation: 10s shadow-rotate linear infinite;
-}
-
-@keyframes shadow-rotate {
-	0%        { transform: rotateX(-90deg) rotateZ(0deg); }
-	99.99999% { transform: rotateX(-90deg) rotateZ(359deg); }
-}
-
-.star-1 {
-	transform: translateZ(-2px);
-	animation: 10s star-1-rotate linear infinite;
-}
-
-@keyframes star-1-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg) translateZ(-2px); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg) translateZ(-2px); }
-}
-
-.star-2 {
-	transform: translateZ(-1px);
-	animation: 10s star-2-rotate linear infinite;
-}
-
-@keyframes star-2-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg) translateZ(-1px); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg) translateZ(-1px); }
-}
-
-.star-3 {
-	transform: translateZ(0px);
-	animation: 10s star-3-rotate linear infinite;
-}
-
-@keyframes star-3-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg) translateZ(0px); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg) translateZ(0px); }
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>2022圣诞快乐！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+ @charset "UTF-8";
+/*
+-- CREDITS
+-- CHRISTMAS TREE DESIGN - Based on https://www.freevector.com/free-christmas-tree-vectors-19224
+-- BG GRADIENT - Manuel Pinto https://codepen.io/P1N2O/pen/pyBNzX
+-- PRESENT PATTERN - Yoksel https://codepen.io/yoksel/pen/jufvg
+*/
+/*
+-- Colors
+*/
+/*
+-- Extends
+*/
+h1, body {
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+/*
+-- Mixin Xmas-ball
+*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  display: inline-block;
+}
+
+/*
+-- Text
+*/
+h1 {
+  font-family: "Mountains of Christmas", cursive;
+  font-size: 42px;
+  line-height: 60px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1::before, h1::after {
+  content: "❆";
+  margin: 0 10px;
+}
+
+h2 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h3 {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-family: "Dancing Script", cursive;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/*
+-- Card Styles
+*/
+.card-container {
+  height: 675px;
+  width: 675px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 8px double #fff;
+  border-radius: 20px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  /*Overflow on Circle on Safari*/
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/*
+-- Snow --
+*/
+.snow-flakes-1, .snow-flakes-2 {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  z-index: 20;
+  background-color: transparent;
+  opacity: 1;
+}
+
+.snow-flakes-1 {
+  top: 0;
+  box-shadow: 37px 60px 6px 3px #fff, 533px 673px 6px 2px #fff, 355px 12px 6px 1px #fff, 480px 215px 6px 5px #fff, 248px 55px 6px 6px #fff, 628px 460px 6px 7px #fff, 445px 634px 6px 3px #fff, 622px 554px 6px 8px #fff, 41px 628px 6px 1px #fff, 209px 58px 6px 6px #fff, 547px 391px 6px 2px #fff, 589px 336px 6px 6px #fff, 196px 307px 6px 8px #fff, 393px 242px 6px 8px #fff, 383px 42px 6px 7px #fff, 293px 488px 6px 5px #fff, 416px 379px 6px 2px #fff, 421px 41px 6px 4px #fff, 221px 480px 6px 2px #fff, 108px 52px 6px 8px #fff, 622px 304px 6px 5px #fff, 496px 240px 6px 2px #fff, 678px 108px 6px 4px #fff, 394px 394px 6px 1px #fff, 238px 5px 6px 4px #fff, 551px 657px 6px 8px #fff, 622px 184px 6px 8px #fff, 74px 67px 6px 4px #fff, 144px 602px 6px 3px #fff, 508px 456px 6px 1px #fff;
+  -moz-animation: moveDown 15s ease infinite;
+  -webkit-animation: moveDown 15s ease infinite;
+  animation: moveDown 15s ease infinite;
+}
+
+.snow-flakes-2 {
+  top: -700px;
+  box-shadow: 487px 588px 6px 7px #fff, 348px 97px 6px 3px #fff, 53px 399px 6px 8px #fff, 358px 571px 6px 1px #fff, 453px 526px 6px 1px #fff, 617px 13px 6px 3px #fff, 595px 78px 6px 3px #fff, 97px 296px 6px 5px #fff, 490px 304px 6px 1px #fff, 50px 77px 6px 6px #fff, 470px 14px 6px 7px #fff, 667px 242px 6px 1px #fff, 206px 14px 6px 5px #fff, 7px 225px 6px 2px #fff, 435px 87px 6px 7px #fff, 315px 2px 6px 6px #fff, 73px 65px 6px 5px #fff, 597px 559px 6px 7px #fff, 37px 602px 6px 1px #fff, 348px 160px 6px 6px #fff, 216px 93px 6px 2px #fff, 172px 635px 6px 8px #fff, 223px 136px 6px 4px #fff, 261px 344px 6px 8px #fff, 34px 174px 6px 6px #fff, 126px 609px 6px 4px #fff, 507px 176px 6px 3px #fff, 340px 258px 6px 8px #fff, 94px 360px 6px 6px #fff, 563px 217px 6px 7px #fff;
+  -moz-animation: moveDown 13s ease infinite;
+  -webkit-animation: moveDown 13s ease infinite;
+  animation: moveDown 13s ease infinite;
+  animation-delay: 2s;
+}
+
+/*
+-- Xmas Balls
+*/
+.xmas-ball {
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+}
+
+.ball-0, .ball-1, .ball-2, .ball-3, .ball-4, .ball-5, .ball-6, .ball-7, .ball-8, .ball-9, .ball-10 {
+  -webkit-animation: Blink 0.5s infinite;
+  -moz-animation: Blink 0.5s infinite;
+  animation: Blink 0.5s infinite;
+}
+
+.ball-0 {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #fbc02d;
+  border: 6px solid #f9a825;
+  margin: auto;
+  position: relative;
+  top: 15px;
+  z-index: 6;
+}
+
+.ball-1 {
+  height: 20px;
+  width: 20px;
+  background-color: #f48fb1;
+  border: 4px solid #f06292;
+  bottom: 22px;
+  right: 10px;
+}
+
+.ball-2 {
+  height: 15px;
+  width: 15px;
+  background-color: #b39ddb;
+  border: 4px solid #9575cd;
+  bottom: 26px;
+  right: 55px;
+}
+
+.ball-3 {
+  height: 30px;
+  width: 30px;
+  background-color: #90caf9;
+  border: 4px solid #64b5f6;
+  bottom: 50px;
+  left: 18px;
+}
+
+.ball-4 {
+  height: 25px;
+  width: 25px;
+  background-color: #90caf9;
+  border: 4px solid #64b5f6;
+  bottom: 20px;
+  left: 70px;
+}
+
+.ball-5 {
+  height: 15px;
+  width: 15px;
+  background-color: #ffab91;
+  border: 4px solid #ff8a65;
+  top: 6px;
+  left: 0px;
+}
+
+.ball-6 {
+  height: 20px;
+  width: 20px;
+  background-color: #66bb6a;
+  border: 4px solid #4caf50;
+  top: 51px;
+  right: 73px;
+}
+
+.ball-7 {
+  height: 10px;
+  width: 10px;
+  background-color: #90caf9;
+  border: 4px solid #64b5f6;
+  top: 18px;
+  right: 90px;
+}
 
-.star-4 {
-	transform: translateZ(1px);
-	animation: 10s star-4-rotate linear infinite;
+.ball-8 {
+  height: 15px;
+  width: 15px;
+  background-color: #f48fb1;
+  border: 4px solid #f06292;
+  top: 30px;
+  right: 15px;
 }
 
-@keyframes star-4-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg) translateZ(1px); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg) translateZ(1px); }
+.ball-9 {
+  height: 10px;
+  width: 10px;
+  background-color: #b39ddb;
+  border: 4px solid #9575cd;
+  top: 8px;
+  left: 30px;
 }
 
-.star-5 {
-	transform: translateZ(2px);
-	animation: 10s star-5-rotate linear infinite;
+.ball-10 {
+  height: 20px;
+  width: 20px;
+  background-color: #ffab91;
+  border: 4px solid #ff8a65;
+  top: 25px;
+  right: 90px;
 }
 
-@keyframes star-5-rotate {
-	0%        { transform: rotateX(0deg) rotateY(0deg) translateZ(2px); }
-	99.99999% { transform: rotateX(0deg) rotateY(359deg) translateZ(2px); }
+/*
+-- Tree Styles
+*/
+.tree-container {
+  bottom: 12px;
+  position: relative;
 }
 
-.star,
-.star:before,
-.star:after {
-	content: '';
-	height: 0;
-	width: 0;
-	border-top: solid 30px var(--star-bg);
-	border-left: solid 45px transparent;
-	border-right: solid 45px transparent;
-	position: absolute;
-	top: 0;
-	left: calc(50% - 45px);
+.tree-p1, .tree-p2, .tree-p3, .tree-p4 {
+  text-align: center;
 }
 
-.star:before {
-	transform: rotate(72deg);
-	top: -33px;
-	left: -46px;
+.tree-p1 li, .tree-p2 li, .tree-p3 li, .tree-p4 li {
+  overflow: hidden;
 }
 
-.star:after {
-	transform: rotate(287deg);
-	top: -33px;
-	left: -44px;
+.tree-p1 li:first-child, .tree-p2 li:first-child, .tree-p3 li:first-child, .tree-p4 li:first-child {
+  position: relative;
+  left: 5px;
 }
 
-.shine {
-	background: var(--shine-bg);
-	height: 90px;
-	width: 90px;
-	position: absolute;
-	top: -45px;
-	left: calc(50% - 45px);
-	border-radius: 50%;
-	transform: translateZ(40px);
-	filter: blur(20px);
-	opacity: 0.6;
-	animation: 5s shine linear infinite;
+.tree-p1 li:nth-child(2), .tree-p2 li:nth-child(2), .tree-p3 li:nth-child(2), .tree-p4 li:nth-child(2) {
+  position: relative;
+  right: 5px;
 }
 
-@keyframes shine {
-	0%   { transform: scale(1) translateZ(40px); }
-	50%  { transform: scale(1.5) translateZ(40px); }
-	100% { transform: scale(1) translateZ(40px); }
+.tree-left-branch, .tree-right-branch {
+  background-color: #2e7d32;
+  position: relative;
 }
 
-.snow-container {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+.tree-left-branch {
+  transform: skew(-30deg);
+  left: 60px;
+  border-bottom: 10px solid #1b5e20;
+  border-left: 10px solid #1b5e20;
+  border-bottom-left-radius: 25px;
 }
 
-.snow {
-	position: absolute;
+.tree-right-branch {
+  transform: skew(30deg);
+  right: 60px;
+  border-bottom: 10px solid #1b5e20;
+  border-right: 10px solid #1b5e20;
+  border-bottom-right-radius: 25px;
 }
 
-.snow:before {
-	content: '';
-	background-color: var(--snow-bg);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	border-radius: 50%;
+.tree-right-branch::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(27, 94, 32, 0.2);
+  right: 0;
+  border-bottom-right-radius: 15px;
 }
 
-.snow-y-1:before {
-	animation: 8s snow-y-1 ease-in infinite, 8s snow-y-0 linear infinite;
+.tree-right-branch:first-child::after {
+  width: 15px;
 }
 
-.snow-y-2:before {
-	animation: 6s snow-y-2 ease-in infinite, 6s snow-y-0 linear infinite;
+.tree-right-branch:nth-child(2)::after {
+  width: 20px;
 }
 
-.snow-y-3:before {
-	animation: 4s snow-y-2 ease-in infinite, 4s snow-y-0 linear infinite;
+.tree-right-branch:nth-child(3)::after {
+  width: 25px;
 }
 
-.snow-1 {
-	width: 20px;
-	height: 20px;
-	top: calc(50% - 250px);
-	left: calc(50% - 10px);
-	animation: 1s snow-x linear infinite;
+.tree-right-branch.stubborn::after {
+  width: 30px;
 }
 
-.snow-2 {
-	width: 15px;
-	height: 15px;
-	top: calc(50% - 300px);
-	left: calc(50% - 30px);
-	animation: 0.8s snow-x linear infinite 0.1s;
+/*
+-- Tree Part 1 Sizes
+*/
+.tree-p1 .tree-left-branch, .tree-p1 .tree-right-branch {
+  width: 100px;
+  height: 110px;
 }
 
-.snow-3 {
-	width: 10px;
-	height: 10px;
-	top: calc(50% - 400px);
-	left: calc(50% + 60px);
-	animation: 0.6s snow-x linear infinite 0.8s;
+.tree-p1 ul {
+  height: 119px;
 }
 
-.snow-4 {
-	width: 25px;
-	height: 25px;
-	top: calc(50% - 200px);
-	left: calc(50% + 50px);
-	animation: 0.5s snow-x linear infinite 0.5s;
+/*
+-- Tree Part 2 Sizes
+*/
+.tree-p2 .tree-left-branch, .tree-p2 .tree-right-branch {
+  width: 140px;
+  height: 95px;
 }
 
-.snow-5 {
-	width: 18px;
-	height: 18px;
-	top: calc(50% - 200px);
-	left: calc(50% - 50px);
-	animation: 0.5s snow-x linear infinite 0.5s;
+.tree-p2 ul {
+  height: 104px;
 }
 
-.snow-6 {
-	width: 12px;
-	height: 12px;
-	top: calc(50% - 150px);
-	left: calc(50% - 120px);
-	animation: 0.8s snow-x linear infinite 0.5s;
+/*
+-- Tree Part 3 Sizes
+*/
+.tree-p3 {
+  z-index: 1;
 }
-
-.snow-7 {
-	width: 20px;
-	height: 20px;
-	top: calc(50% - 150px);
-	left: calc(50% + 75px);
-	animation: 1s snow-x linear infinite 0.6s;
-}
-
-.snow-8 {
-	width: 22px;
-	height: 22px;
-	top: calc(50% - 10px);
-	left: calc(50% - 30px);
-	animation: 1s snow-x linear infinite 0.8s;
-}
-
-.snow-9 {
-	width: 8px;
-	height: 8px;
-	top: calc(50% - 250px);
-	left: calc(50% - 30px);
-	animation: 1s snow-x linear infinite 0.8s;
-}
-
-.snow-10 {
-	width: 13px;
-	height: 13px;
-	top: calc(50% - 250px);
-	left: calc(50% - 100px);
-	animation: 1s snow-x linear infinite 0.8s;
-}
-
-@keyframes snow-x {
-	0%   { transform: translateX(0px); }
-	25%  { transform: translateX(5px); }
-	50%  { transform: translateX(0px); }
-	75%  { transform: translateX(-5px); }
-	100% { transform: translateX(0px); }
-}
-
-@keyframes snow-y-0 {
-	0%   { opacity: 1; }
-	60%  { opacity: 1; }
-	100% { opacity: 0; }
-}
-
-@keyframes snow-y-1 {
-	0%        { transform: translateY(0px); }
-	99.99999% { transform: translateY(300px); }
-	100%      { transform: translateY(0px); }
-}
-
-@keyframes snow-y-2 {
-	0%        { transform: translateY(0px); }
-	99.99999% { transform: translateY(400px); }
-	100%      { transform: translateY(0px); }
-}
-
-@keyframes snow-y-3 {
-	0%        { transform: translateY(0px); }
-	99.99999% { transform: translateY(500px); }
-	100%      { transform: translateY(0px); }
-}
-
-</style>
-
-</head>
-<body>
 
-<div class="container">
-	<div class="tree">
-		<div class="shadow ts-3d"></div>
-		<div class="trunk ts-3d">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div class="leaves-bottom ts-3d">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div class="leaves-middle ts-3d">
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-		</div>
-		<div class="leaves-top ts-3d">
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-			<div class="ts-3d"></div>
-		</div>
-		<div class="star star-1 ts-3d"></div>
-		<div class="star star-2 ts-3d"></div>
-		<div class="star star-3 ts-3d"></div>
-		<div class="star star-4 ts-3d"></div>
-		<div class="star star-5 ts-3d"></div>
-		<div class="shine ts-3d"></div>
-	</div>
-	<div class="snow-container">
-		<div class="snow snow-1 snow-y-1"></div>
-		<div class="snow snow-2 snow-y-2"></div>
-		<div class="snow snow-3 snow-y-3"></div>
-		<div class="snow snow-4 snow-y-3"></div>
-		<div class="snow snow-5 snow-y-2"></div>
-		<div class="snow snow-6 snow-y-1"></div>
-		<div class="snow snow-7 snow-y-1"></div>
-		<div class="snow snow-8 snow-y-2"></div>
-		<div class="snow snow-9 snow-y-3"></div>
-		<div class="snow snow-10 snow-y-3"></div>
-	</div>
+.tree-p3 .tree-left-branch, .tree-p3 .tree-right-branch {
+  width: 175px;
+  height: 95px;
+}
+
+.tree-p3 ul {
+  height: 104px;
+}
+
+/*
+-- Tree Part 4 Sizes
+*/
+.tree-p4 {
+  z-index: 2;
+  position: relative;
+}
+
+.tree-p4 .tree-left-branch, .tree-p4 .tree-right-branch {
+  width: 200px;
+  height: 65px;
+}
+
+.tree-p4 ul {
+  height: 75px;
+}
+
+/*
+-- Tree Wood Styles
+*/
+.wood {
+  height: 70px;
+  width: 55px;
+  background-color: #a98274;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin: auto;
+  border-left: 10px solid #795548;
+  border-bottom: 10px solid #795548;
+  border-right: 10px solid #795548;
+  position: relative;
+}
+
+.wood::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(121, 85, 72, 0.2);
+  width: 25px;
+  right: 0;
+}
+
+/*
+-- Present Styles 1
+*/
+.present-container-1 {
+  position: absolute;
+  z-index: 1;
+  right: 105px;
+  bottom: 30px;
+}
+
+.present-container-1 .tie {
+  width: 20px;
+  height: 20px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  top: 10px;
+  z-index: 1;
+}
+
+.present-container-1 .tie::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border: 5px solid #4caf50;
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+
+.present-container-1 .tie::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border: 5px solid #4caf50;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+}
+
+.present-container-1 .lid {
+  width: 120px;
+  height: 35px;
+  border-radius: 6px;
+  z-index: 2;
+  position: relative;
+  background: radial-gradient(circle, #4caf50 0.25em, rgba(255, 255, 255, 0) 0.25em, rgba(255, 255, 255, 0) 0.5em, rgba(102, 187, 106, 0.7) 0.5em, rgba(102, 187, 106, 0.7) 0.6em, rgba(255, 255, 255, 0) 0.6em) 0 0, radial-gradient(circle, #66bb6a 0.25em, rgba(255, 255, 255, 0) 0.25em, rgba(255, 255, 255, 0) 0.5em, rgba(76, 175, 80, 0.7) 0.5em, rgba(76, 175, 80, 0.7) 0.6em, rgba(255, 255, 255, 0) 0.6em) 1em 1em, radial-gradient(circle, rgba(76, 175, 80, 0.7) 0.125em, rgba(255, 255, 255, 0) 0.125em) 1em 0, radial-gradient(circle, rgba(102, 187, 106, 0.7) 0.1em, rgba(255, 255, 255, 0) 0.1em) 0 1em;
+  background-color: #fff;
+  background-size: 2em 2em;
+  background-repeat: repeat;
+}
+
+.present-container-1 .lid::after {
+  content: "";
+  width: 100px;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 10px;
+  bottom: -6px;
+}
+
+.present-container-1 .box {
+  width: 100px;
+  height: 70px;
+  background-color: #f44336;
+  margin: auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/*
+-- Present Styles 2
+*/
+.present-container-2 {
+  position: absolute;
+  right: 146px;
+  bottom: 0px;
+  z-index: 3;
+}
+
+.present-container-2 .tie {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  top: 10px;
+  z-index: 1;
+}
+
+.present-container-2 .tie::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+
+.present-container-2 .tie::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+}
+
+.present-container-2 .lid {
+  width: 160px;
+  height: 30px;
+  background-color: #f44336;
+  border-radius: 6px;
+  z-index: 2;
+  position: relative;
+}
+
+.present-container-2 .lid::after {
+  content: "";
+  width: 140px;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 10px;
+  bottom: -6px;
+}
+
+.present-container-2 .box {
+  width: 140px;
+  height: 60px;
+  margin: auto;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+  box-shadow: 8px -20px 50px 5px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #f44336 0.3em, rgba(232, 58, 37, 0) 0.3em) 0 1em, linear-gradient(-135deg, #f44336 0.3em, rgba(232, 58, 37, 0) 0.3em) 0 1em, radial-gradient(circle at 1.79em 1.85em, #f44336 0.255em, rgba(232, 58, 37, 0) 0.261em) 0 -1em, radial-gradient(circle at 0.21em 1.85em, #f44336 0.255em, rgba(232, 58, 37, 0) 0.261em) 0 -1em, linear-gradient(135deg, #66bb6a 0.3em, rgba(152, 204, 150, 0) 0.3em) 1em 0, linear-gradient(-135deg, #66bb6a 0.3em, rgba(152, 204, 150, 0) 0.3em) 1em 0, radial-gradient(circle at 1.79em 1.85em, #66bb6a 0.255em, rgba(152, 204, 150, 0) 0.261em) 1em 0, radial-gradient(circle at 0.21em 1.85em, #66bb6a 0.255em, rgba(152, 204, 150, 0) 0.261em) 1em 0;
+  background-size: 2em 2em;
+  background-color: #fff;
+  background-repeat: repeat;
+}
+
+/*
+-- Blink Xmas Balls
+*/
+@-webkit-keyframes Blink {
+  50% {
+    filter: brightness(130%);
+  }
+}
+@-moz-keyframes Blink {
+  50% {
+    filter: brightness(130%);
+  }
+}
+@keyframes Blink {
+  50% {
+    filter: brightness(130%);
+  }
+}
+/*
+-- Change Background Gradient
+*/
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/*
+-- Snow Fall
+*/
+@-webkit-keyframes moveDown {
+  0% {
+    -webkit-transform: translateY(-50em);
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 227px 85px 6px 3px #fff, 658px 649px 6px 5px #fff, 586px 98px 6px 3px #fff, 477px 508px 6px 6px #fff, 489px 189px 6px 2px #fff, 263px 37px 6px 7px #fff, 131px 85px 6px 4px #fff, 598px 426px 6px 5px #fff, 428px 416px 6px 3px #fff, 193px 536px 6px 8px #fff, 475px 6px 6px 6px #fff, 481px 291px 6px 2px #fff, 316px 432px 6px 6px #fff, 536px 559px 6px 6px #fff, 480px 247px 6px 5px #fff, 87px 663px 6px 8px #fff, 659px 150px 6px 2px #fff, 401px 90px 6px 7px #fff, 466px 632px 6px 7px #fff, 392px 586px 6px 6px #fff, 213px 681px 6px 3px #fff, 185px 478px 6px 6px #fff, 284px 623px 6px 2px #fff, 430px 198px 6px 8px #fff, 353px 250px 6px 5px #fff, 237px 172px 6px 5px #fff, 130px 571px 6px 6px #fff, 679px 178px 6px 7px #fff, 95px 213px 6px 1px #fff, 444px 341px 6px 6px #fff;
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-transform: translateY(50em);
+    opacity: 0.1;
+  }
+}
+@-moz-keyframes moveDown {
+  0% {
+    -moz-transform: translateY(-50em);
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 201px 574px 6px 2px #fff, 526px 523px 6px 1px #fff, 454px 650px 6px 7px #fff, 215px 559px 6px 7px #fff, 516px 176px 6px 3px #fff, 294px 423px 6px 7px #fff, 401px 194px 6px 4px #fff, 318px 427px 6px 4px #fff, 171px 327px 6px 8px #fff, 464px 313px 6px 7px #fff, 212px 136px 6px 2px #fff, 186px 350px 6px 7px #fff, 650px 566px 6px 7px #fff, 280px 589px 6px 8px #fff, 69px 60px 6px 5px #fff, 430px 361px 6px 5px #fff, 653px 436px 6px 6px #fff, 220px 676px 6px 4px #fff, 569px 211px 6px 3px #fff, 599px 212px 6px 8px #fff, 44px 624px 6px 4px #fff, 497px 552px 6px 2px #fff, 285px 136px 6px 8px #fff, 660px 284px 6px 8px #fff, 279px 99px 6px 5px #fff, 1px 617px 6px 2px #fff, 503px 690px 6px 6px #fff, 196px 565px 6px 3px #fff, 314px 363px 6px 5px #fff, 62px 697px 6px 7px #fff;
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    -moz-transform: translateY(50em);
+    opacity: 0.1;
+  }
+}
+@keyframes moveDown {
+  0% {
+    transform: translateY(-50em);
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 340px 341px 6px 8px #fff, 584px 123px 6px 2px #fff, 352px 159px 6px 4px #fff, 107px 10px 6px 2px #fff, 138px 239px 6px 2px #fff, 197px 430px 6px 6px #fff, 558px 18px 6px 5px #fff, 558px 697px 6px 7px #fff, 273px 179px 6px 4px #fff, 687px 485px 6px 4px #fff, 697px 144px 6px 3px #fff, 495px 298px 6px 2px #fff, 134px 533px 6px 8px #fff, 244px 15px 6px 6px #fff, 319px 646px 6px 8px #fff, 367px 245px 6px 4px #fff, 437px 35px 6px 3px #fff, 74px 658px 6px 3px #fff, 155px 141px 6px 5px #fff, 189px 394px 6px 3px #fff, 495px 674px 6px 1px #fff, 597px 449px 6px 1px #fff, 609px 363px 6px 8px #fff, 217px 52px 6px 4px #fff, 155px 353px 6px 8px #fff, 577px 374px 6px 2px #fff, 125px 213px 6px 7px #fff, 246px 569px 6px 7px #fff, 278px 379px 6px 5px #fff, 142px 282px 6px 8px #fff;
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(50em);
+    opacity: 0.1;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+  <div class="snow-flakes-1"></div>
+  <div class="snow-flakes-2"></div>
+  <h2>I wish you a very</h2>
+  <h1>Merry Christmas</h1>
+  <div class="tree-container">
+    <div class="ball-0"></div>
+    <div class="tree-p1">
+      <ul>
+        <li>
+          <div class="xmas-ball ball-1"></div>
+          <div class="tree-left-branch"></div>
+        </li>
+        <li><div class="tree-right-branch"></div></li>
+      </ul>
+    </div>
+    <div class="tree-p2">
+      <ul>
+        <li>
+          <div class="xmas-ball ball-2"></div>
+          <div class="tree-left-branch"></div>
+        </li>
+        <li>
+          <div class="xmas-ball ball-3"></div>
+          <div class="tree-right-branch"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="tree-p3">
+      <ul>
+        <li>
+          <div class="xmas-ball ball-6"></div>
+          <div class="tree-left-branch"></div>
+        </li>
+        <li>
+          <div class="xmas-ball ball-5"></div>
+          <div class="xmas-ball ball-4"></div>
+          <div class="tree-right-branch"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="tree-p4">
+      <ul>
+        <li>
+          <div class="xmas-ball ball-7"></div>
+          <div class="xmas-ball ball-8"></div>
+          <div class="tree-left-branch"></div>
+        </li>
+        <li>
+          <div class="xmas-ball ball-9"></div>
+          <div class="xmas-ball ball-10"></div>
+          <div class="tree-right-branch stubborn"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="wood"></div>
+    <div class="presents">
+      <div class="present-container-1">
+        <div class="tie"></div>
+        <div class="lid"></div>
+        <div class="box"></div>
+      </div>
+      <div class="present-container-2">
+        <div class="tie"></div>
+        <div class="lid"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+  <h3>And a Happy New Year!</h3>
+  <p><span></span>一切顺利！</p>
 </div>
-</body>
-<script>
-// Array to store our Snowflake objects
-  var snowflakes = [];
-
-  // Global variables to store our browser's window size
-  var browserWidth;
-  var browserHeight;
-
-  // Specify the number of snowflakes you want visible
-  var numberOfSnowflakes = 70;
-
-  // Flag to reset the position of the snowflakes
-  var resetPosition = false;
-
-  // Handle accessibility
-  var enableAnimations = false;
-  var reduceMotionQuery = matchMedia("(prefers-reduced-motion)");
-
-  // Handle animation accessibility preferences 
-  function setAccessibilityState() {
-    if (reduceMotionQuery.matches) {
-      enableAnimations = false;
-    } else { 
-      enableAnimations = true;
-    }
-  }
-  setAccessibilityState();
-
-  reduceMotionQuery.addListener(setAccessibilityState);
-
-  //
-  // It all starts here...
-  //
-  function setup() {
-    if (enableAnimations) {
-      window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
-      window.addEventListener("resize", setResetFlag, false);
-    }
-  }
-  setup();
-
-  //
-  // Constructor for our Snowflake object
-  //
-  function Snowflake(element, speed, xPos, yPos) {
-    // set initial snowflake properties
-    this.element = element;
-    this.speed = speed;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.scale = 1;
-
-    // declare variables used for snowflake's motion
-    this.counter = 0;
-    this.sign = Math.random() < 0.5 ? 1 : -1;
-
-    // setting an initial opacity and size for our snowflake
-    this.element.style.opacity = (1.2 + Math.random()) / 3;
-  }
-
-  //
-  // The function responsible for actually moving our snowflake
-  //
-  Snowflake.prototype.update = function () {
-    // using some trigonometry to determine our x and y position
-    this.counter += this.speed / 5000;
-    this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
-    this.yPos += Math.sin(this.counter) / 40 + this.speed / 30;
-    this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
-
-    // setting our snowflake's position
-    setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
-
-    // if snowflake goes below the browser window, move it back to the top
-    if (this.yPos > browserHeight) {
-      this.yPos = -50;
-    }
-  }
-
-  //
-  // A performant way to set your snowflake's position and size
-  //
-  function setTransform(xPos, yPos, scale, el) {
-    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale}, ${scale})`;
-  }
-
-  //
-  // The function responsible for creating the snowflake
-  //
-  function generateSnowflakes() {
-
-    // get our snowflake element from the DOM and store it
-    var originalSnowflake = document.querySelector(".snowflake");
-
-    // access our snowflake element's parent container
-    var snowflakeContainer = originalSnowflake.parentNode;
-    snowflakeContainer.style.display = "block";
-
-    // get our browser's size
-    browserWidth = document.documentElement.clientWidth;
-    browserHeight = document.documentElement.clientHeight;
-
-    // create each individual snowflake
-    for (var i = 0; i < numberOfSnowflakes; i++) {
-
-      // clone our original snowflake and add it to snowflakeContainer
-      var snowflakeClone = originalSnowflake.cloneNode(true);
-      snowflakeContainer.appendChild(snowflakeClone);
-
-      // set our snowflake's initial position and related properties
-      var initialXPos = getPosition(50, browserWidth);
-      var initialYPos = getPosition(50, browserHeight);
-      var speed = 5 + Math.random() * 40;
-
-      // create our Snowflake object
-      var snowflakeObject = new Snowflake(snowflakeClone,
-        speed,
-        initialXPos,
-        initialYPos);
-      snowflakes.push(snowflakeObject);
-    }
-
-    // remove the original snowflake because we no longer need it visible
-    snowflakeContainer.removeChild(originalSnowflake);
-
-    moveSnowflakes();
-  }
-
-  //
-  // Responsible for moving each snowflake by calling its update function
-  //
-  function moveSnowflakes() {
-
-    if (enableAnimations) {
-      for (var i = 0; i < snowflakes.length; i++) {
-        var snowflake = snowflakes[i];
-        snowflake.update();
-      }      
-    }
-
-    // Reset the position of all the snowflakes to a new value
-    if (resetPosition) {
-      browserWidth = document.documentElement.clientWidth;
-      browserHeight = document.documentElement.clientHeight;
-
-      for (var i = 0; i < snowflakes.length; i++) {
-        var snowflake = snowflakes[i];
-
-        snowflake.xPos = getPosition(50, browserWidth);
-        snowflake.yPos = getPosition(50, browserHeight);
-      }
-
-      resetPosition = false;
-    }
-
-    requestAnimationFrame(moveSnowflakes);
-  }
-
-  //
-  // This function returns a number between (maximum - offset) and (maximum + offset)
-  //
-  function getPosition(offset, size) {
-    return Math.round(-1 * offset + Math.random() * (size + 2 * offset));
-  }
-
-  //
-  // Trigger a reset of all the snowflakes' positions
-  //
-  function setResetFlag(e) {
-    resetPosition = true;
-  }
-</script>
+  </body>
 </html>
